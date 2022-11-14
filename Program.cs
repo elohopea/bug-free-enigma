@@ -1,14 +1,7 @@
-var builder = WebApplication.CreateBuilder(args);
-{
-    var services = builder.Services;
-    services.AddControllers();
-}
+using Microsoft.AspNetCore.HttpLogging;
 
-var app = builder.Build();
-{
-    app.MapControllers();
-}
-
-app.MapGet("/", () => "Greetings from Program.cs");
-
-app.Run();
+WebApplication.CreateBuilder(args)
+    .RegisterServices()
+    .Build()
+    .SetupMiddleware()
+    .Run();
